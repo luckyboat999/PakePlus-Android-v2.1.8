@@ -288,6 +288,43 @@
             line-height: 1.2;
         }
         
+        /* 太公奇门排盘滚动容器 */
+        .qimen-scroll-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin: 0 -20px;
+            padding: 0 20px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--border-color);
+        }
+        
+        .qimen-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .qimen-scroll-container::-webkit-scrollbar-track {
+            background: var(--border-color);
+            border-radius: var(--border-radius-full);
+        }
+        
+        .qimen-scroll-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius-full);
+        }
+        
+        .qimen-scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        /* 滚动提示 */
+        .scroll-indicator {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-hint);
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+        
         /* 太公奇门式盘表格样式 */
         .qimen-table {
             width: 100%;
@@ -687,7 +724,9 @@
         
         /* 案例库弹窗样式 */
         .case-library-popup,
-        .save-case-popup {
+        .save-case-popup,
+        .tiangan-popup,
+        .dizhi-popup {
             display: none;
             position: fixed;
             top: 50%;
@@ -708,9 +747,33 @@
             max-width: 800px;
         }
         
-        .save-case-popup {
+        .save-case-popup,
+        .tiangan-popup,
+        .dizhi-popup {
             width: 90%;
-            max-width: 500px;
+            max-width: 400px;
+        }
+        
+        @media (max-width: 768px) {
+            .case-library-popup,
+            .save-case-popup,
+            .tiangan-popup,
+            .dizhi-popup {
+                padding: 20px;
+                width: 95%;
+                max-width: 95vw;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .case-library-popup,
+            .save-case-popup,
+            .tiangan-popup,
+            .dizhi-popup {
+                padding: 16px;
+                width: 98%;
+                max-width: 98vw;
+            }
         }
         
         /* 案例搜索样式 */
@@ -781,13 +844,13 @@
         .save-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
         
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
         
         .form-group label {
@@ -798,7 +861,7 @@
         
         .form-group input,
         .form-group textarea {
-            padding: 10px 12px;
+            padding: 12px 14px;
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius-sm);
             font-size: 14px;
@@ -815,7 +878,7 @@
         
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
             line-height: 1.5;
         }
         
@@ -834,6 +897,34 @@
             font-size: 14px;
             font-weight: 500;
             transition: var(--transition);
+        }
+        
+        @media (max-width: 480px) {
+            .save-form {
+                gap: 12px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .form-group textarea {
+                min-height: 80px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .form-actions button {
+                padding: 10px 16px;
+                font-size: 13px;
+                width: 100%;
+                text-align: center;
+            }
         }
         
         /* 案例项样式 */
@@ -896,7 +987,38 @@
             white-space: nowrap;
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            .container {
+                margin: 16px;
+                padding: 16px;
+            }
+            
+            h1 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .zhuzhu-labels {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .zhuzhu-label {
+                font-size: 12px;
+                margin: 0 4px;
+                padding: 4px 8px;
+                background-color: rgba(25, 118, 210, 0.05);
+                border-radius: var(--border-radius-sm);
+            }
+            
+            .tiangan-buttons,
+            .dizhi-buttons {
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             .circle-button {
                 width: 55px;
                 height: 55px;
@@ -904,21 +1026,134 @@
             }
             
             .confirm-button {
-                width: 130px;
-                height: 40px;
+                width: 140px;
+                height: 42px;
+                font-size: 14px;
+            }
+            
+            .flex {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .result {
+                margin-top: 20px;
+                padding: 16px;
+            }
+            
+            .result h2 {
+                font-size: 18px;
+                margin-bottom: 16px;
+            }
+            
+            .bazi-table th,
+            .bazi-table td {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .qimen-panel {
+                padding: 16px;
+            }
+            
+            .qimen-panel h3 {
+                font-size: 16px;
+            }
+            
+            .tiangan-popup,
+            .dizhi-popup,
+            .save-case-popup,
+            .case-library-popup {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .tiangan-grid,
+            .dizhi-grid {
+                gap: 8px;
+            }
+            
+            .tiangan-item,
+            .dizhi-item {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .popup-header h3 {
+                font-size: 16px;
+            }
+            
+            .none-btn {
+                padding: 4px 12px;
                 font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                margin: 12px;
+                padding: 12px;
+            }
+            
+            h1 {
+                font-size: 18px;
+                margin-bottom: 16px;
+            }
+            
+            .zhuzhu-labels {
+                gap: 6px;
+            }
+            
+            .zhuzhu-label {
+                font-size: 11px;
+                margin: 0 4px;
+                padding: 3px 6px;
+            }
+            
+            .tiangan-buttons,
+            .dizhi-buttons {
+                gap: 6px;
+            }
+            
+            .circle-button {
+                width: 48px;
+                height: 48px;
+                font-size: 12px;
+            }
+            
+            .reset-btn {
+                width: 16px;
+                height: 16px;
+                font-size: 10px;
+                top: 2px;
+                right: 2px;
+            }
+            
+            .confirm-button {
+                width: 120px;
+                height: 38px;
+                font-size: 13px;
+            }
+            
+            .flex {
+                gap: 10px;
+            }
+            
+            .range-info {
+                font-size: 12px;
+                margin-bottom: 16px;
             }
             
             .bazi-table th,
             .bazi-table td {
                 padding: 6px 8px;
-                font-size: 13px;
+                font-size: 12px;
             }
             
             .tiangan-item,
             .dizhi-item {
                 padding: 8px 10px;
-                font-size: 13px;
+                font-size: 12px;
             }
             
             .popup-header {
@@ -3365,8 +3600,11 @@
             // 计算太公奇门式盘
             const qimen = calculateQimen(bazi);
             
+            // 滚动提示
+            html += '<div class="scroll-indicator">← 左右滑动查看完整内容 →</div>';
+            
             // 太公奇门式盘表格
-            html += '<div class="qimen-table-container">';
+            html += '<div class="qimen-scroll-container">';
             html += '<table class="qimen-table">';
             
             // 第一行：十二用神（按照地盘顺序排列）
@@ -3407,6 +3645,7 @@
             
             
             html += '</table>';
+            html += '</div>';
             html += '</div>';
             
             // 显示用神起始位置信息（折叠形式）
